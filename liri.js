@@ -134,22 +134,33 @@ let random = function() {
     })
 }
 
+let log = function(search, userInput) {
+    fs.appendFile("log.txt", search + ", " + userInput + "\n", function(err) {
+        if (err) return console.log(err)
+    })
+    console.log("Logged command: " + search + " || Search value: " + userInput)
+}
+
 function commend(search, userInput) {
     switch (search) {
         case 'concert-this':
             concertAPI(userInput)
+            log(search, userInput)
             break;
     
         case 'spotify-this-song':
             spotifyAPI(userInput)
+            log(search, userInput)
             break;
     
         case 'movie-this':
             omdbAPI(userInput)
+            log(search, userInput)
             break;
     
         case 'do-what-it-says':
             random()
+            log(search, userInput)
             break;
     
         default:
