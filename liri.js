@@ -51,6 +51,9 @@ let concertAPI = function(name) {
 }
 
 let spotifyAPI = function(name) {
+    if (!name) {
+        name = "The Sign"
+    }
     spotify.search({ type: 'track', query: name}, function(err, data) {
         if (err) {
           return console.log('Error occurred: ' + err);
